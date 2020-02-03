@@ -1,14 +1,16 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewChild } from "@angular/core";
 import { SocketService } from "../../socket/socket.service";
 import * as _ from "lodash";
 import { Item } from "../../model/menu";
 import { interval } from "rxjs";
+import { UIChart } from "primeng/primeng";
 @Component({
   selector: "app-t3-chart",
   templateUrl: "./t3-chart.component.html",
   styleUrls: ["./t3-chart.component.css"]
 })
 export class T3ChartComponent implements OnInit {
+  @ViewChild("chart") chart: UIChart;
   data: any;
   obj: Item = new Item();
   dataSet = {
@@ -17,13 +19,16 @@ export class T3ChartComponent implements OnInit {
     borderColor: "#1E88E5",
     data: []
   };
-  secondsCounter = interval(1000 * 60);
+  secondsCounter = interval(1000 * 10);
   subscribe: any;
   constructor(private stockSetvice: SocketService) {}
 
   ngOnInit(): void {
     this.getT3ChartData();
-    this.subscribe = this.secondsCounter.subscribe(n => this.getT3ChartData());
+    this.subscribe = this.secondsCounter.subscribe(n => {
+      this.getT3ChartData();
+      this.chart.reinit();
+    });
     //this.timer();
   }
   ngOnDestroy(): void {
@@ -32,7 +37,7 @@ export class T3ChartComponent implements OnInit {
     this.subscribe.unsubscribe(n => this.getT3ChartData());
   }
   timer() {
-    const secondsCounter = interval(1000 * 60);
+    const secondsCounter = interval(1000 * 10);
     // Subscribe to begin publishing values
     secondsCounter.subscribe(n => this.getT3ChartData());
   }
@@ -41,6 +46,8 @@ export class T3ChartComponent implements OnInit {
     this.stockSetvice.getT3Data().subscribe(
       data => {
         console.log("T3 data = ", data);
+        this.obj = new Item();
+        this.dataSet.data = [];
         var arr = _.values(data)[1];
 
         let key: string;
