@@ -23,8 +23,13 @@ import { CustomerListComponent } from "./page/customer-list/customer-list.compon
 import { HomeDashboardComponent } from "./dashboard/home-dashboard/home-dashboard.component";
 import { StockChartComponent } from "./chart/stock-chart/stock-chart.component";
 import { T3ChartComponent } from "./chart/t3-chart/t3-chart.component";
+import { LiveChartComponent } from "./chart/live-chart/live-chart.component";
 
 const appRouter: Routes = [
+  {
+    path: "live-chart",
+    component: LiveChartComponent
+  },
   {
     path: "t3-chart",
     component: T3ChartComponent
@@ -64,7 +69,8 @@ const appRouter: Routes = [
     CustomerListComponent,
     HomeDashboardComponent,
     StockChartComponent,
-    T3ChartComponent
+    T3ChartComponent,
+    LiveChartComponent
   ],
   imports: [
     BrowserModule,

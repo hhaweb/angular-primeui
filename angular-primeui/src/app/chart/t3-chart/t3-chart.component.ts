@@ -12,6 +12,7 @@ import { UIChart } from "primeng/primeng";
 export class T3ChartComponent implements OnInit {
   @ViewChild("chart") chart: UIChart;
   data: any;
+  options: any;
   obj: Item = new Item();
   dataSet = {
     label: "Triple Exponential Moving Average",
@@ -19,12 +20,36 @@ export class T3ChartComponent implements OnInit {
     borderColor: "#1E88E5",
     data: []
   };
-  secondsCounter = interval(1000 * 10);
+  secondsCounter = interval(1000 * 1000);
   subscribe: any;
   constructor(private stockSetvice: SocketService) {}
 
   ngOnInit(): void {
     this.getT3ChartData();
+    this.options = {
+      plugins: {
+        datalabels: {
+          align: "end",
+          anchor: "end",
+          borderRadius: 4,
+          backgroundColor: "red",
+          color: "white",
+          font: {
+            weight: "bold"
+          }
+        }
+      },
+
+      title: {
+        display: true,
+        text: "Triple Exponential Moving Average",
+        fontSize: 16
+      },
+      legend: {
+        position: "bottom"
+      }
+    };
+
     this.subscribe = this.secondsCounter.subscribe(n => {
       this.getT3ChartData();
       this.chart.reinit();

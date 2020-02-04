@@ -23,6 +23,11 @@ export class MenuBarComponent implements OnInit {
             label: "T3-Chart",
             icon: "fa fa-line-chart",
             routerLink: ["/t3-chart"]
+          },
+          {
+            label: "Live-Chart",
+            icon: "fa fa-line-chart",
+            routerLink: ["/live-chart"]
           }
         ]
       },

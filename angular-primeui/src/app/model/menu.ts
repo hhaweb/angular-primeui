@@ -3,7 +3,7 @@ export class Item {
 
   datasets = new Array();
 
-  barDataSets=new Array();
+  barDataSets = new Array();
 
   /*  data = {
     labels: [],
