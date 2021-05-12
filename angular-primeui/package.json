@@ -23,7 +23,7 @@
         "@fullcalendar/core": "^4.3.1",
         "@types/socket.io-client": "^1.4.32",
         "angular-font-awesome": "^3.1.2",
-        "chart.js": "^2.9.3",
+        "chart.js": "^2.9.4",
         "font-awesome": "^4.7.0",
         "lodash": "^4.17.15",
         "primeflex": "^1.0.0",
